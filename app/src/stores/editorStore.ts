@@ -63,12 +63,20 @@ interface EditorState {
   saveToHistory: () => void
 }
 
-// Initial empty content
+// Helper to create a block with ID
+export const createBlock = (type: string, children: Descendant[] = [{ text: '' } as unknown as Descendant]): EditorBlock => ({
+  id: crypto.randomUUID(),
+  type: type as EditorBlock['type'],
+  children,
+} as unknown as EditorBlock)
+
+// Initial content - valid Slate format with ID for drag/drop
 const initialContent: Descendant[] = [
   {
+    id: crypto.randomUUID(),
     type: 'paragraph',
-    children: [{ text: '' }],
-  } as unknown as Descendant,
+    children: [{ text: 'Willkommen bei MasterDoc. Beginne hier zu tippen...' }],
+  } as Descendant,
 ]
 
 export const useEditorStore = create<EditorState>((set, get) => ({

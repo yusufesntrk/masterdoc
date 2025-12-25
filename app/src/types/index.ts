@@ -170,6 +170,8 @@ export type BlockType =
   | 'toc'
   | 'page-break'
   | 'field'
+  | 'columns'
+  | 'column'
 
 export interface BaseBlock {
   id: string
@@ -252,6 +254,18 @@ export interface FieldBlock extends BaseBlock {
   required: boolean
 }
 
+export interface ColumnBlock extends BaseBlock {
+  type: 'column'
+  width: number // Breite in Prozent (z.B. 50 für 50%)
+  children: Descendant[]
+}
+
+export interface ColumnsBlock extends BaseBlock {
+  type: 'columns'
+  columns: ColumnBlock[] // Array von Spalten
+  gap: number // Abstand zwischen Spalten in px
+}
+
 export type EditorBlock =
   | ParagraphBlock
   | HeadingBlock
@@ -262,6 +276,8 @@ export type EditorBlock =
   | PageBreakBlock
   | TocBlock
   | FieldBlock
+  | ColumnBlock
+  | ColumnsBlock
 
 // ============================================
 // API Response Types

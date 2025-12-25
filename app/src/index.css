@@ -61,6 +61,20 @@ body {
   outline-offset: 2px;
 }
 
+/* Slate.js Editor - no border on focus */
+[data-slate-editor="true"]:focus,
+[data-slate-editor="true"]:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Block containers - no visible borders */
+.group [contenteditable="true"]:focus,
+.group [contenteditable="true"]:focus-visible {
+  outline: none !important;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
